@@ -1,9 +1,14 @@
+/*
+ *      - Clase que representa un Jugador humano en el juego.
+ *      - Extiende de la clase abstracta Jugador.
+ */
 import java.util.Scanner;
 
 public class JugadorHumano extends Jugador 
 {
+    // Nombre del jugador humano
     private String nombre;
-
+    
     public JugadorHumano( String nombre, char simbolo )
     {
         super( simbolo );
@@ -35,6 +40,7 @@ public class JugadorHumano extends Jugador
         return obtenerCasilla( movimiento );
     }
     
+    @Override
     public int[] obtenerCasilla( int movimiento )
     {
         switch ( movimiento )
@@ -60,5 +66,12 @@ public class JugadorHumano extends Jugador
             default:
                 throw new IllegalArgumentException( "Movimiento fuera de rango: " + movimiento ); // no deberia occurir, ya que validamos antes en obtenerMovimiento                    
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format( "Jugador: %s + %s",
+             obtenerNombre(), super.toString() );
     }
 }
