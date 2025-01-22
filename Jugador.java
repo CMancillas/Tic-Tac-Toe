@@ -15,25 +15,25 @@ public abstract class Jugador
     public Jugador( char simbolo )
     {
         this.simbolo = simbolo; // se le asigna el simbolo a Jugador
-    } // fin del constructor
+    } // Fin del constructor
 
     public void establecerSimbolo( char simbolo )
     {
         this.simbolo = simbolo;
-    } // fin del metodo establecerSimbolo
+    } // Fin del metodo establecerSimbolo
 
     public char obtenerSimbolo()
     {
         return simbolo;
-    } // fin del metodo obtenerSimbolo;
+    } // Fin del metodo obtenerSimbolo;
    
     @Override
     public String toString()
     {
         return String.format( "Simbolo: %c ", obtenerSimbolo() );
-    } // fin del metodo toString   
+    } // Fin del metodo toString   
 
     // Metodos abstractos que implementara cada subclase
     public abstract int[] obtenerMovimiento();
-    public abstract int[] obtenerCasilla( int movimiento );
-} // fin de la clase Jugador
+    protected abstract int[] obtenerCasilla( int movimiento );
+} // Fin de la clase Jugador

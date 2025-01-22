@@ -9,15 +9,16 @@ public class JugadorHumano extends Jugador
     // Nombre del jugador humano
     private String nombre;
     
+    // Cosntructor de JugadorHumano
     public JugadorHumano( String nombre, char simbolo )
     {
-        super( simbolo );
-        this.nombre = nombre;
-    }
+        super( simbolo ); // Llama al constructor de la clase padre para asignar el simbolo
+        this.nombre = nombre; // Asigna el nombre al jugador
+    } // fin del constructor
 
     public void establecerNombre( String nombre )
     {
-        this.nombre = nombre;
+        this.nombre = nombre; // Actualiza el atributo nombre
     } // fin del metodo establecerNombre
 
     public String obtenerNombre()
@@ -25,23 +26,27 @@ public class JugadorHumano extends Jugador
         return nombre;
     } // fin del metodo obtenerNombre
     
+    // Obtiene el movimiento del jugador humano
     @Override
     public int[] obtenerMovimiento()
     {
         Scanner entrada = new Scanner( System.in );
         int movimiento;
+
+        // Bucle para asegurar de que el movimiento ingresado esta en el rango valido
         do
         {
-            System.out.printf( "En que casilla gustarias poner tu simbolo? (%d-%d)", RANGO_MIN, RANGO_MAX );        
+            System.out.printf( "En que casilla gustarias poner tu simbolo? (%d-%d) ", RANGO_MIN, RANGO_MAX );        
             movimiento = entrada.nextInt();
-            entrada.close(); // cerramos entrada para evitar fugas de memoria 
-        } while( movimiento < RANGO_MIN || movimiento > RANGO_MAX );
+            entrada.close(); // Cerramos entrada para evitar fugas de memoria 
+        } while( movimiento < RANGO_MIN || movimiento > RANGO_MAX ); // Fin del do - while
         
         return obtenerCasilla( movimiento );
-    }
+    } // fin del metodo obtenerMovimiento
     
+    // Convierte un numero de movimiento ( 1 - 9 ) al numero de casilla correspondiente
     @Override
-    public int[] obtenerCasilla( int movimiento )
+    protected int[] obtenerCasilla( int movimiento )
     {
         switch ( movimiento )
         {
@@ -65,13 +70,13 @@ public class JugadorHumano extends Jugador
                 return new int[]{ 2, 2 };   
             default:
                 throw new IllegalArgumentException( "Movimiento fuera de rango: " + movimiento ); // no deberia occurir, ya que validamos antes en obtenerMovimiento                    
-        }
-    }
+        } // Fin del switch
+    } // Fin del metodo obtenerCasilla
 
     @Override
     public String toString()
     {
-        return String.format( "Jugador: %s + %s",
+        return String.format( "Jugador: %s + %s\n",
              obtenerNombre(), super.toString() );
-    }
-}
+    } // Fin del metodo toString
+} // Fin de la clase JugadorHumano
