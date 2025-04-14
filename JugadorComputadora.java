@@ -13,6 +13,11 @@ public class JugadorComputadora extends Jugador
         super( simbolo ); // Llama al constructor de la clase padre para asignar el simbolo
     } // Fin del constructor 
 
+    public String obtenerNombre()
+    {
+        return "CPU";
+    } // fin del metodo obtenerNombre
+
     // Obtiene el movimiento del jugador de computadora
     @Override
     public int[] obtenerMovimiento()
