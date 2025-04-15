@@ -36,9 +36,10 @@ public class JugadorHumano extends Jugador
         // Bucle para asegurar de que el movimiento ingresado esta en el rango valido
         do
         {
-            System.out.printf( "En que casilla gustarias poner tu simbolo? (%d-%d) ", RANGO_MIN, RANGO_MAX );        
+            System.out.printf( "Escoge tu posición (%d-%d): ", RANGO_MIN, RANGO_MAX );        
             movimiento = entrada.nextInt();
-            entrada.close(); // Cerramos entrada para evitar fugas de memoria 
+            entrada.nextLine();
+            //entrada.close(); // Cerramos entrada para evitar fugas de memoria 
         } while( movimiento < RANGO_MIN || movimiento > RANGO_MAX ); // Fin del do - while
         
         return obtenerCasilla( movimiento );

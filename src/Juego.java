@@ -22,7 +22,7 @@ public class Juego
     public void mostrarMenu()
     {
         System.out.println("+------------------------------+");
-        System.out.println("| Bienvenido al juego del Gato |");
+        System.out.println("| Juego del Gato (Tic Tac Toe) |");
         System.out.println("+------------------------------+");
         System.out.println();
 
@@ -32,6 +32,7 @@ public class Juego
         System.out.println("- En cada turno, el jugador elige una casilla para colocar su símbolo.");
         System.out.println();
     }
+
 
     public void mostrarTableroInicial()
     {
@@ -100,7 +101,20 @@ public class Juego
     {
         if (tablero[posicion[0]][posicion[1]] == ('-') )  
             tablero[posicion[0]][posicion[1]] = jugador;
+        
     } // Fin del metodo rellenarTablero
+
+    public boolean esEmpate()
+    {
+        for (int fila = 0; fila < tablero.length; fila++)
+            for (int columna = 0; columna < tablero[fila].length; columna++)
+                if ( tablero[fila][columna] == ('-'))
+                {
+                    return false;
+                }             
+        
+        return !esVictoria();
+    }
 
     public boolean esVictoria()
     {
@@ -121,13 +135,13 @@ public class Juego
         // Combinaciones horizontales de cada jugador
         if ( tablero[0][0] == 'x' && tablero[0][1] == 'x' && tablero[0][2] == 'x' )
             return true;
-        else if ( tablero[1][0] == 'x' && tablero[1][1] == 'x' && tablero[1][1] == 'x' )
+        else if ( tablero[1][0] == 'x' && tablero[1][1] == 'x' && tablero[1][2] == 'x' )
             return true;
         else if ( tablero[2][0] == 'x' && tablero[2][1] == 'x' && tablero[2][2] == 'x' )
             return true;
         else if ( tablero[0][0] == 'o' && tablero[0][1] == 'o' && tablero[0][2] == 'o' )
             return true;
-        else if ( tablero[1][0] == 'o' && tablero[1][1] == 'o' && tablero[1][1] == 'o' )
+        else if ( tablero[1][0] == 'o' && tablero[1][1] == 'o' && tablero[1][2] == 'o' )
             return true;
         else if ( tablero[2][0] == 'o' && tablero[2][1] == 'o' && tablero[2][2] == 'o' )
             return true;
@@ -158,5 +172,25 @@ public class Juego
             return true;
         else
             return false;    
+    }
+
+    public boolean esCasillaLibre(int[] posicion)
+    {
+        return tablero[posicion[0]][posicion[1]] == ('-');
+    }
+    
+    public static void procesarTurno( Jugador jugador, Juego juego )
+    {
+        int[] movimiento;
+
+        do 
+        {
+            System.out.printf("Turno para %s\n", jugador.obtenerNombre());
+            movimiento = jugador.obtenerMovimiento();
+            if ( !juego.esCasillaLibre(movimiento) )
+                System.out.println("Casilla ocupada. Vuelva a ingresar su movimiento.\n");
+        } while ( !juego.esCasillaLibre(movimiento));
+        
+        juego.rellenarTablero(movimiento, jugador.obtenerSimbolo());
     }
 }

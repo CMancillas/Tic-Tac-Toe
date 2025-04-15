@@ -35,5 +35,6 @@ public abstract class Jugador
 
     // Metodos abstractos que implementara cada subclase
     public abstract int[] obtenerMovimiento();
+    public abstract String obtenerNombre();
     protected abstract int[] obtenerCasilla( int movimiento );
 } // Fin de la clase Jugador
